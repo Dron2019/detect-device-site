@@ -40,6 +40,7 @@ h1 {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  width: 100%;
 }
 
 .logo {
@@ -99,4 +100,5 @@ button:focus-visible {
 
 li {
   list-style: none;
+  word-break: break-all;
 }

@@ -2,7 +2,6 @@
 import device from "current-device";
 import { detect  } from "detect-browser";
 import copy from 'copy-to-clipboard';
-// OR
 import {
   deviceType,
   primaryInput,
@@ -12,12 +11,13 @@ import {
 } from 'detect-it';
 import './style.css';
 
-
 const browser = detect();
-
-
 const app = document.querySelector('#app');
-app.innerHTML = `
+
+
+
+const infoHTML = () => {
+  return `
   <ul data-info>
     <li><b>device</b>: ${device.type}</li>
     <li><b>deviceType</b>: ${deviceType}</li>
@@ -33,16 +33,25 @@ app.innerHTML = `
       <div><b>Screen</b></div>
       <div>width: ${screen.width}</div>
       <div>height: ${screen.height}</div>
+      <div>Inner Height: ${window.innerHeight}</div>
+      <div>Inner Width: ${window.innerWidth}</div>
+      <div>pixel ratio: ${window.devicePixelRatio}</div>
+      <div>Width no scaling ${window.innerWidth * window.devicePixelRatio}</div>
+      <div>Height no scaling ${window.innerHeight * window.devicePixelRatio}</div>
+      <div>${JSON.stringify(Object(window.screen))}</div>
     </li>
-  </ul>
-`;
-
-app.insertAdjacentHTML('beforeend', `
-  <ul>
     <li><b>Browser</b></li>
-    ${JSON.stringify(browser)}
+    <li>${JSON.stringify(browser)}</li>
   </ul>
-`);
+`
+};
+app.innerHTML = infoHTML();
+
+
+window.addEventListener('resize', () => {
+  const info = document.querySelector('[data-info]');
+  info.innerHTML = infoHTML();
+});
 
 app.insertAdjacentHTML('beforeend', `
   <button id="copy">Copy</button>
@@ -53,4 +62,7 @@ copyBtn.addEventListener('click', () => {
   const info = document.querySelector('[data-info]');
   copy(info.outerHTML);
 });
+
+
+
 
