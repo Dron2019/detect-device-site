@@ -25,6 +25,22 @@ const infoHTML = () => {
     <li><b>supportsPointerEvents</b>: ${supportsPointerEvents}</li>
     <li><b>supportsTouchEvents</b>: ${supportsTouchEvents}</li>
     <li><b>supportsPassiveEvents</b>: ${supportsPassiveEvents}</li>
+    <li><br></li>
+    <li><b>primaryPointerFine</b>: ${window.matchMedia("(pointer: fine)").matches}</li>
+    <li><b>anyPointerFine</b>: ${window.matchMedia("(any-pointer: fine)").matches}</li>
+    <li><b>primaryPointerCoarse</b>: ${window.matchMedia("(pointer: coarse)").matches}</li>
+    <li><b>anyPointerCoarse</b>: ${window.matchMedia("(any-pointer: coarse)").matches}</li>
+    <li><br></li>
+    <li><b>primaryHover</b>: ${window.matchMedia("(hover: hover)").matches}</li>
+    <li><b>anyHover</b>: ${window.matchMedia("(any-hover: hover)").matches}</li>
+    <li><b>primaryHoverNone</b>: ${window.matchMedia("(hover: none)").matches}</li>
+    <li><b>anyHoverNone</b>: ${window.matchMedia("(any-hover: none)").matches}</li>
+    <li><br></li>
+    <li><b>pointerEventInWindow</b>: ${"PointerEvent"in window}</li>
+    <li><b>maxTouchPoints</b>: ${"".concat(window.navigator.maxTouchPoints)}</li>
+    <li><b>onTouchStartInWindow</b>: ${"ontouchstart"in window}</li>
+    <li><b>touchEventInWindow</b>: ${"TouchEvent"in window}</li>
+    <li><br></li>
     <li>
       <b>User Agent:</b> 
       <div>${navigator.userAgent}</div>
@@ -38,7 +54,18 @@ const infoHTML = () => {
       <div>pixel ratio: ${window.devicePixelRatio}</div>
       <div>Width no scaling ${window.innerWidth * window.devicePixelRatio}</div>
       <div>Height no scaling ${window.innerHeight * window.devicePixelRatio}</div>
-      <div>${JSON.stringify(Object(window.screen))}</div>
+      <div>${JSON.stringify({
+        availHeight: window.screen.availHeight,
+        availLeft: window.screen.availLeft,
+        availTop: window.screen.availTop,
+        availWidth: window.screen.availWidth,
+        colorDepth: window.screen.colorDepth,
+        height: window.screen.height,
+        isExtended: window.screen.isExtended,
+        orientation: window.screen.orientation,
+        pixelDepth: window.screen.pixelDepth,
+        width: window.screen.width,
+      })}</div>
     </li>
     <li><b>Browser</b></li>
     <li>${JSON.stringify(browser)}</li>
